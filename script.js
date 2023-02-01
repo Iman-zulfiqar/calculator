@@ -24,6 +24,7 @@ function button(a) {
   input.value = pre + a;
 }
 function del() {
+  if (input.value == "syntax error ") return;
   let len = input.value.length;
   let a = input.value.slice(0, len - 1);
   input.value = a;
@@ -39,6 +40,7 @@ bt.forEach((el) => {
         submit = 1;
       } catch (error) {
         input.value = "syntax error ";
+        submit = 1;
       }
     }
   });
@@ -185,5 +187,42 @@ t.addEventListener("click", () => {
       "bg-[#ca5502]",
       "text-[#ffffff]"
     );
+  }
+});
+document.querySelector("html").addEventListener("keydown", (e) => {
+  let m = e.key;
+
+  if (m >= 0 && m <= 9) {
+    button(m);
+  }
+  if (m == "-") {
+    button(m);
+  }
+  if (m == "*") {
+    button(m);
+  }
+  if (m == "+") {
+    button(m);
+  }
+  if (m == ".") {
+    button(m);
+  }
+  if (m == "/") {
+    button(m);
+  }
+  if (m == "Enter") {
+    try {
+      input.value = eval(input.value);
+      submit = 1;
+    } catch (error) {
+      input.value = "syntax error ";
+      submit = 1;
+    }
+  }
+  if (m == "Backspace") {
+    del();
+  }
+  if (m == "Delete") {
+    reset();
   }
 });
