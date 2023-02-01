@@ -11,11 +11,18 @@ let t = document.querySelector("#theme");
 let dl = document.querySelector(".del");
 let rs = document.querySelector(".reset");
 let eq = document.querySelector(".equal");
+let submit = 0;
+// console.log(submit);
 function button(a) {
+  if (submit != 0) {
+    // console.log("i am clicking");
+    // console.log(submit);
+    reset();
+  }
+  submit = 0;
   let pre = input.value;
   input.value = pre + a;
 }
-
 function del() {
   let len = input.value.length;
   let a = input.value.slice(0, len - 1);
@@ -29,6 +36,7 @@ bt.forEach((el) => {
     if (el.value == "=") {
       try {
         input.value = eval(input.value);
+        submit = 1;
       } catch (error) {
         input.value = "syntax error ";
       }
