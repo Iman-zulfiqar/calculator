@@ -22,67 +22,19 @@ function del() {
   input.value = a;
 }
 
-function sum() {
-  let first = input.value;
-  let plus = first.indexOf("+");
-  let minus = first.indexOf("-");
-  let multiply = first.indexOf("x");
-  let divide = first.indexOf("/");
-  if (plus != -1) {
-    let arr = first.split("+");
-    let sum = 0;
-    arr.forEach((element) => {
-      let n = parseInt(element);
-      sum = sum + n;
-    });
-    console.log(sum);
-    if (sum === NaN) {
-      input.value = "syntax error";
-    } else {
-      input.value = sum;
-    }
-  }
-  if (minus != -1) {
-    let arr = first.split("-");
-    let m = 0;
-    arr.forEach((element) => {
-      let n = parseInt(element);
-      m = n - m;
-    });
+let bt = document.querySelectorAll(".col-span-1");
 
-    if (m == NaN) {
-      input.value = "syntax error";
-    } else {
-      input.value = m;
+bt.forEach((el) => {
+  el.addEventListener("click", (e) => {
+    if (el.value == "=") {
+      try {
+        input.value = eval(input.value);
+      } catch (error) {
+        input.value = "syntax error ";
+      }
     }
-  }
-  if (multiply != -1) {
-    let arr = first.split("x");
-    let ml = 1;
-    arr.forEach((element) => {
-      let n = parseInt(element);
-      ml = n * ml;
-    });
-    if (ml == NaN) {
-      input.value = "syntax error";
-    } else {
-      input.value = ml;
-    }
-  }
-  if (divide != -1) {
-    let arr = first.split("/");
-    let d = 1;
-    arr.forEach((element) => {
-      let n = parseInt(element);
-      d = n / d;
-    });
-    if (d == NaN) {
-      input.value = "syntax error";
-    } else {
-      input.value = d;
-    }
-  }
-}
+  });
+});
 // reset function
 function reset() {
   input.value = "";
